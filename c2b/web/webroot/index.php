@@ -11,7 +11,7 @@
 class MysqlUtil{
 	private static $_sqlHandle = null;
 
-	/*TODO 单例模式*/
+	/*TODO  单例模式*/
 	public static function getSqlHandle ($dbConfig) {
 		if(self::$_sqlHandle)
 			return self::$_sqlHandle;
@@ -89,19 +89,31 @@ class MysqlUtil{
 
 }
 
-$mysql  = new MysqlUtil;
-$config = [
-	'dbhost' => 'localhost',
-	'dbuser' => 'root',
-	'dbpass' => 'westos',
-	'dbname' => 'tq',
-	'dbport' => '3306',
-	];
-$handle = $mysql::getSqlHandle($config);
-$sql    = 'SELECT * FROM test';
-$result = $mysql::getRow($handle, $sql);
-var_dump($result);
+//$mysql  = new MysqlUtil;
+//$config = [
+//	'dbhost' => 'localhost',
+//	'dbuser' => 'root',
+//	'dbpass' => 'westos',
+//	'dbname' => 'tq',
+//	'dbport' => '3306',
+//	];
+//$handle = $mysql::getSqlHandle($config);
+//$sql    = 'SELECT * FROM test';
+//$result = $mysql::getRow($handle, $sql);
+//var_dump($result);
 
+setcookie('user','hezhang');
+
+echo '<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CORS TEST</title>
+</head>
+<body>
+This is a CORS TEST RESTful Server!
+</body>
+</html>';
 
 
 
