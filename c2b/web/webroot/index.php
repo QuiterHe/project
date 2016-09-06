@@ -51,6 +51,7 @@ class MysqlUtil{
 		return $result === false ? false : $result;
 	}
 
+	#获取一条数据
 	public static function getRow($handle, $sql) {
 		if(!self::_checkHandle($handle))
 			return false;
@@ -62,6 +63,7 @@ class MysqlUtil{
 		return $row;
 	}
 
+	#获取多条数据
 	public static function getList($handle, $sql) {
 		if(!self::_checkHandle($handle))
 			return false;
@@ -75,6 +77,7 @@ class MysqlUtil{
 		return $res;
 	}
 
+	#获取一个数据
 	public static function getOne($handle, $sql) {
 		$row = self::getRow($handle, $sql);
 		if(is_array($row))
@@ -84,6 +87,52 @@ class MysqlUtil{
 
 	private static function _checkHandle($handle) {
 		return is_object($handle) ? true : false;
+	}
+
+
+}
+
+class RedisUtil{
+	private static $_redisHandle = null;
+
+	#获取redis handle
+	public static function _getRedisHandle($dbConfig) {
+		if(self::$_redisHandle)
+			return self::$_redisHandle;
+		$handle = self::connectDB($dbConfig);
+		if(false === $handle)
+			return false;
+		return $handle;
+	}
+
+	#连接DB
+	protected static function connectDB($dbConfig) {
+		$param = true;
+		do{
+			if(!isset($dbConfig['host']))
+				$param = false;
+			if(!isset($dbConfig['port']))
+				$param = false;
+		}while(0);
+		if (false === $param)
+			return false;
+
+		$redis = new Redis();
+		$handle = $redis->connect($dbConfig['host'], $dbConfig['port']);
+		if(false == $handle)
+			return false;
+		return $redis;
+	}
+
+	#设置字符串数据
+	public static function setData($reids, $str) {
+		$redis->set($str);
+	}
+	public static function createKey($str) {
+		/* TODO */
+	}
+	public static function getData($handle, $key) {
+		/* TODO */
 	}
 
 
@@ -102,18 +151,26 @@ class MysqlUtil{
 //$result = $mysql::getRow($handle, $sql);
 //var_dump($result);
 
-setcookie('user','hezhang');
-
-echo '<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CORS TEST</title>
-</head>
-<body>
-This is a CORS TEST RESTful Server!
-</body>
-</html>';
+//setcookie('user','hezhang');
+//
+//echo '<!DOCTYPE html>
+//<html lang="en">
+//<head>
+//    <meta charset="UTF-8">
+//    <title>CORS TEST</title>
+//</head>
+//<body>
+//This is a CORS TEST RESTful Server!
+//</body>
+//</html>';
+//$redis = new RedisUtil();
+//$dbConfig = [
+//	'host' => '127.0.0.1',
+//	'port' => '6379'
+//	];
+//$redisHandle = $redis::_getRedisHandle($dbConfig);
+//var_dump($redisHandle->set('name','hezhang'));
+//var_dump($redisHandle->get('name'));
 
 
 
