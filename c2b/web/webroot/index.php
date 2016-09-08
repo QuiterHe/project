@@ -163,6 +163,8 @@ class RedisUtil{
 //This is a CORS TEST RESTful Server!
 //</body>
 //</html>';
+
+
 //$redis = new RedisUtil();
 //$dbConfig = [
 //	'host' => '127.0.0.1',
@@ -173,4 +175,8 @@ class RedisUtil{
 //var_dump($redisHandle->get('name'));
 
 
+include "LoggerUtil.php";
+
+$logUtil = new \C2b\Sdk\Util\AuctionLogUtil('bc');
+$logUtil::logError('log test');
 
