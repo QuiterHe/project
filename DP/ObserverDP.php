@@ -40,3 +40,32 @@ class UserListLogger implements IObserver {
 $ul = new UserList();
 $ul->addObserver(new UserListLogger());
 $ul->addCustomer('hezhang');
+
+/* 被观察对象 */
+class UserList2 implements IObservable {
+    private $_observer = [];
+
+    public function addObserver( $observer ) {
+        $this->_observer[] = $observer;
+    }
+
+    public function addCustomer( $name ) {
+        foreach( $this->_observer as $obs ) {
+            $obs->onChanged($this, $name);
+        }
+    }
+}
+
+/* 观察对象 */
+class UserListLogger2 {
+    public function onChanged( $sender, $args ) {
+        echo "$args added to list\n";
+    }
+}
+
+echo "=========================="."\n";
+$ul = new UserList2();
+/* 注册 */
+$ul->addObserver( new UserListLogger2() );
+/* 回调 */
+$ul->addCustomer( 'wanghao' );
