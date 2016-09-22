@@ -41,6 +41,7 @@ $ul = new UserList();
 $ul->addObserver(new UserListLogger());
 $ul->addCustomer('hezhang');
 
+/*====================================================================================================================*/
 /* 被观察对象 */
 class UserList2 implements IObservable {
     private $_observer = [];

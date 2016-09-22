@@ -54,7 +54,7 @@ class UserList
         }
     }
 
-    /* 即插即用的查找算法 */
+    /* 即插即用(动态)的查找算法 */
     public function find( IStrategy $filter ) {
         $res = [];
         foreach( $this->_list as $user ) {
