@@ -175,8 +175,10 @@ class RedisUtil{
 //var_dump($redisHandle->get('name'));
 
 
-include "LoggerUtil.php";
+//include "LoggerUtil.php";
+//
+//$logUtil = new \C2b\Sdk\Util\AuctionLogUtil('bc');
+//$logUtil::logError('log test');
 
-$logUtil = new \C2b\Sdk\Util\AuctionLogUtil('bc');
-$logUtil::logError('log test');
+echo '<center><h1>Hello, world!</h1></center>';
 
