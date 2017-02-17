@@ -6,6 +6,8 @@
  * Time: 下午2:54
  */
 
+// Best Case nlgn
+// Worst Case n^2
 
 function quickSort(array &$arr, $low, $high) {
     if( $low < $high ) {
@@ -41,4 +43,7 @@ function swapArr(array &$arr, $a, $b) {
 $arr = [10, 80, 30, 90, 40, 50, 70];
 quickSort($arr, 0, 6);
 var_dump($arr);
+$arr2 = [10, 7, 8, 9, 1, 5];
+quickSort($arr2, 0, 5);
+var_dump($arr2);
 
